@@ -14,7 +14,7 @@ const CategoryListBox = styled.ul`
 `;
 
 const CategoryItem = styled.li`
-  width: 23%;
+  width: 24%;
   padding: 0 20px 50px 20px;
   box-sizing: border-box;
 `;
@@ -30,9 +30,11 @@ const StyledLink = styled(Link)`
 
 const ImgBox = styled.div`
   width: 100%;
+  height: 200px;
 `;
 const Img = styled.img`
   width: 100%;
+  height: 100%;
 `;
 
 const FlexBox = styled.div`
@@ -63,6 +65,10 @@ const CommunityTitle = styled.span`
   font-weight: bold;
   display: block;
   padding: 10px 0 0 5px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 const CommunityDescription = styled.span`
   width: 100%;
@@ -80,11 +86,14 @@ const CommunityDescription = styled.span`
 const CategoryJoinBox = styled.div`
   width: 50%;
   padding: 25px 0 0 0;
+  position: relative;
 `;
 const IsJoined = styled.span`
   width: 100%;
   display: block;
   text-align: right;
+  position: absolute;
+  top: 0;
 `;
 
 const IsJoinedText = styled.i`
@@ -109,7 +118,7 @@ const CommunityJoinCount = styled.span`
   font-weight: 400;
   color: #afafaf;
   text-align: right;
-  padding: 5px 5px 0 0px;
+  padding: 25px 5px 0 0px;
 `;
 const HostName = styled.span`
   display: block;
@@ -123,7 +132,7 @@ const HostName = styled.span`
 
 const MoreBtnWrap = styled.span`
   display: block;
-  width: 91%;
+  width: 96%;
 `;
 
 const MoreBtn = styled.button`

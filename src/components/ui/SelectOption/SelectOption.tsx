@@ -24,7 +24,7 @@ const SelectOption = forwardRef(({ optionData, onChange, onBulr, value }: Select
   return (
     <Select onChange={handleSelectChange} onBlur={handleSelectBulr} value={value} name="categoryType" ref={ref}>
       {optionData.map((dataItem) => (
-        <Option value={dataItem.value} optionText={dataItem.optionText} />
+        <Option key={dataItem.value } value={dataItem.value} optionText={dataItem.optionText} />
       ))}
     </Select>
   );

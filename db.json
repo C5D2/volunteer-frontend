@@ -316,5 +316,44 @@
       "authorName": "호스트이름",
       "participantsCompleted": "참여인원완료"
     }
+  ],
+
+  "communityDetail": [
+    {
+      "categoryId": 1,
+      "communityId": 1,
+      "communityTitle": "커뮤니티제목1",
+      "communityParticipant": 0,
+      "communityMaxParticipant": 10,
+      "communityAuthor": "null",
+      "communityStatus": "모집중",
+      "communityContent": "커뮤니티내용1",
+      "communityLocation": "서울시 강남구",
+      "postTime": "23/10/10 10:00",
+      "communityImgPathList": [
+        {
+          "communityImgNum": 1,
+          "communityImgPath": "/src/assets/images/CommunityIntro.png"
+        }
+      ]
+    },
+    {
+      "categoryId": 2,
+      "communityId": 2,
+      "communityTitle": "커뮤니티제목2",
+      "communityParticipant": 0,
+      "communityMaxParticipant": 10,
+      "communityAuthor": "null",
+      "communityStatus": "모집중",
+      "communityContent": "커뮤니티내용2",
+      "communityLocation": "부산시 수영구",
+      "postTime": "23/10/15 11:00",
+      "communityImgPathList": [
+        {
+          "communityImgNum": 2,
+          "communityImgPath": "/src/assets/images/CommunnityCover.png"
+        }
+      ]
+    }
   ]
 }

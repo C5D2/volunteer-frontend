@@ -7,6 +7,7 @@ import { MyPage, MyInfoEditPage } from '@pages/my';
 import { CommunityPage, CommunityCreatePage, CommunityEditPage } from '@pages/community';
 import { PostPage, PostCreatePage, PostDetailPage, PostEditPage } from '@pages/community/[communityId]/post';
 import { AdminPage, CommunitySearchPage, MemberListPage } from '@pages/admin';
+import LoadingPage from '@pages/login/LoadingPage';
 
 const Routers = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const Routers = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'login/loading',
+        element: <LoadingPage />,
       },
       {
         path: 'signup',

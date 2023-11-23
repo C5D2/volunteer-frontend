@@ -17,12 +17,12 @@ interface SelectLabelProps {
 }
 
 const SelectLabel = forwardRef(({ labelText, optionData,value, validateText, isValid, onChange, onBulr }: SelectLabelProps, ref:ForwardedRef<HTMLSelectElement>) => {
-	console.log(ref)
+
   return (
-		<S.SelectLabelWrap color={isValid }>
+		<S.SelectLabelWrap>
       <label>{labelText}</label>
 			<SelectOption optionData={optionData} onChange={onChange} onBulr={onBulr} value={value} ref={ref } />
-      <Paragraph paragraphText={validateText} color={isValid} />
+      <Paragraph paragraphText={validateText} $isValid={isValid} />
     </S.SelectLabelWrap>
   );
 })

@@ -5,7 +5,7 @@ import { Community } from '@interfaces/Community.ts';
 import * as S from '@pages/home/styles/CategorySearchStyle.ts';
 
 interface CategorySearchProps {
-  onSearch: (query: string) => void;
+  onSearch: (query: string, field: string) => void;
   filteredData: Community[];
   searched: boolean; // 추가: searched 상태를 받아올 prop
   setSearched: (value: boolean) => void;
@@ -13,7 +13,7 @@ interface CategorySearchProps {
 
 const CategorySearch: React.FC<CategorySearchProps> = ({ onSearch, filteredData, searched, setSearched }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  // const [searched, setSearched] = useState(false);
+  const [searchField, setSearchField] = useState('communityTitle');
 
   // 리렌더링시 검색어 초기화
   useEffect(() => {
@@ -23,7 +23,7 @@ const CategorySearch: React.FC<CategorySearchProps> = ({ onSearch, filteredData,
   }, [searched]);
 
   const handleSearch = () => {
-    onSearch(searchQuery);
+    onSearch(searchQuery, searchField);
     setSearched(true);
   };
 
@@ -35,6 +35,12 @@ const CategorySearch: React.FC<CategorySearchProps> = ({ onSearch, filteredData,
 
   return (
     <S.SearchBox>
+      <S.SelectFilter value={searchField} onChange={(e) => setSearchField(e.target.value)}>
+        {' '}
+        <option value="communityTitle">제목</option>
+        <option value="communityAuthor">작성자</option>
+      </S.SelectFilter>
+
       <S.InputSearch
         type="text"
         placeholder="검색어를 입력하세요"

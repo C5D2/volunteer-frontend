@@ -1,20 +1,63 @@
 import styled from 'styled-components';
 import { setActiveIndex, selectActiveIndex } from '@stores/slices/NavCatrgorySlice.ts';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Nav = () => {
   const dispatch = useDispatch();
   const activeIndex = useSelector(selectActiveIndex);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 700);
+  }, [activeIndex]);
 
   const handleMenuClick = (index: number) => {
-    if (index === activeIndex) {
-      // 이미 선택한 메뉴를 다시 클릭한 경우, "전체보기"로 변경
-      dispatch(setActiveIndex(-1));
-    } else {
-      // 다른 메뉴 클릭 시 해당 인덱스로 설정
+    const matchCommunity = window.location.pathname.match(/\/community\/(\d+)/);
+    const matchLogin = window.location.pathname.match(/\/login/);
+    const matchSignup = window.location.pathname.match(/\/signup/);
+    const matchSignupAdd = window.location.pathname.match(/\/signup\/add/);
+    const matchMy = window.location.pathname.match(/\/my/);
+    const matchMyEdit = window.location.pathname.match(/\/my\/edit/);
+    const communityCreate = window.location.pathname.match(/\/community\/create/);
+    const CommunityEdit = window.location.pathname.match(/\/community\/(\d+)\/edit/);
+    const PostPage = window.location.pathname.match(/\/community\/(\d+)\/post/);
+    const PostCreate = window.location.pathname.match(/\/community\/(\d+)\/post\/create/);
+    const PostDetail = window.location.pathname.match(/\/community\/(\d+)\/post\/(\d+)/);
+    const PostEdit = window.location.pathname.match(/\/community\/(\d+)\/post\/(\d+)\/edit/);
+    const Admin = window.location.pathname.match(/\/admin/);
+    const MemberList = window.location.pathname.match(/\/admin\/member/);
+    const CommunitySearch = window.location.pathname.match(/\/admin\/community/);
+
+    if (
+      matchCommunity ||
+      matchLogin ||
+      matchSignup ||
+      matchSignupAdd ||
+      matchMy ||
+      matchMyEdit ||
+      communityCreate ||
+      CommunityEdit ||
+      PostPage ||
+      PostCreate ||
+      PostDetail ||
+      PostEdit ||
+      Admin ||
+      MemberList ||
+      CommunitySearch
+    ) {
       dispatch(setActiveIndex(index));
+      navigate(`/`);
+      setTimeout(() => {
+        window.scrollTo(0, 700);
+      }, 100); // 100ms 후에 스크롤 위치 설정
+    } else {
+      dispatch(setActiveIndex(index));
+      if (window.scrollY === 0) {
+        window.scrollTo(0, 700);
+      }
     }
-    window.scrollTo(0, 700);
   };
 
   return (
@@ -70,7 +113,7 @@ const Nav = () => {
 export default Nav;
 
 const NavList = styled.ul`
-  width: 80%;
+  width: 85%;
   display: flex;
   padding: 0px 0 0 30px;
 `;

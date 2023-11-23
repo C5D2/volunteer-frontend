@@ -1,9 +1,7 @@
-import React from 'react'
+import { MemberListPage } from '.';
 
 const AdminPage = () => {
-	return (
-		<div>AdminPage</div>
-	)
-}
+  return <MemberListPage />;
+};
 
-export default AdminPage
+export default AdminPage;

@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 interface StPagragraphProps {
-  color: boolean;
+  $isValid?: boolean;
 }
 
 const StParagraph = styled.p<StPagragraphProps>`
-  color: ${(props) => (props.color ? '': '#fb304b')};
+  color: ${(props) => (props.$isValid ? '#18af82' : '#fb304b')};
+  word-wrap: break-word;
 `;
 
 interface ParagraphProps {
-  paragraphText: string;
-  color: boolean;
+  paragraphText?: string;
+  $isValid?: boolean;
 }
 
-const Paragraph = ({ paragraphText, color }: ParagraphProps) => {
-  return <StParagraph color={color}>{paragraphText}</StParagraph>;
+const Paragraph = ({ paragraphText, $isValid }: ParagraphProps) => {
+  return <StParagraph $isValid={$isValid}>{paragraphText}</StParagraph>;
 };
 
 export default Paragraph;

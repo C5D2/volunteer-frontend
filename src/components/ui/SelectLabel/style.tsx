@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-interface SelectLabelWrapProps {
-  color: boolean;
-}
-export const SelectLabelWrap = styled.div<SelectLabelWrapProps>`
+
+export const SelectLabelWrap = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 780px) {
@@ -23,7 +21,7 @@ export const SelectLabelWrap = styled.div<SelectLabelWrapProps>`
     padding: 0 24px;
     height: 42px;
     border-radius: 10px;
-    border: ${(props) => (props.color ? '2px solid #d9d9d9' : '2px solid #fb304b')};
+    border: 2px solid #d9d9d9
   }
  p{
   margin: 10px 0;
