@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import LocationIcon from '@assets/images/locationIco.png';
+import LocationIcon from '@assets/images/LocationIcon.png';
 import EngagementIcon from '@assets/images/EngagementIco.png';
 
 const CommunityIntroBox = styled.div`
