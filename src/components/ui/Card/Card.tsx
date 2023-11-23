@@ -84,8 +84,7 @@ const StButton = styled(Button)`
 `;
 interface CardProps {
   communityItemData: Community;
-  isCreate?: string
-
+  isCreate?: string;
 }
 const Card = ({ communityItemData, isCreate }: CardProps) => {
   const handleDelete = (communityId: string) => {
@@ -120,11 +119,11 @@ const Card = ({ communityItemData, isCreate }: CardProps) => {
 
           <Info>
             <div>
-              <Image />
+              <Image src={''} alt={''} />
               <span>{isParticipate ? `${communityParticipant} / ${communityMaxParticipant}` : communityStatus}</span>
             </div>
             <div>
-              <Image />
+              <Image src={''} alt={''} />
               <span>{communityLocation}</span>
             </div>
           </Info>
