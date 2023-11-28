@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import TextareaLabel from '@components/ui/Textarea';
 import * as S from './style';
 import EllipsisIcon from '../../../assets/images/ellipsis.svg';
@@ -18,6 +18,7 @@ function Comments() {
   const [, setEditingCommentId] = useState(null);
   const { communityId, postId } = useParams();
   const [editingComments, setEditingComments] = useState<Record<string, string>>({});
+  const errorMessagesRef = useRef<HTMLDivElement | null>(null);
 
   // 토큰
   const token: string | null = getCookie('accessToken');
@@ -75,7 +76,16 @@ function Comments() {
     }
   };
 
+  // 댓글 수정
   const handleEditSubmit = async (commentId: number) => {
+    // 텍스트 에어리어가 비어있는지 확인
+    if (!editingComments[commentId].trim()) {
+      if (errorMessagesRef.current) {
+        errorMessagesRef.current.innerText = '댓글을 입력해주세요.'; // 에러 메시지 업데이트
+      }
+      return; // 텍스트 에어리어가 비어있다면 함수를 종료
+    }
+
     try {
       await editCommentMutation.mutateAsync({
         commentId: commentId,
@@ -88,6 +98,9 @@ function Comments() {
         delete newState[commentId];
         return newState;
       });
+      if (errorMessagesRef.current) {
+        errorMessagesRef.current.innerText = ''; // 성공적으로 수정되면 에러 메시지를 제거
+      }
     } catch (error) {
       console.error('댓글 수정 중 오류 발생', error);
     }
@@ -117,7 +130,7 @@ function Comments() {
                 </S.ProfileWrap>
                 <S.CommentAuthor>{commentItem.commentAuthor}</S.CommentAuthor>
                 <S.CommentText>{commentItem.commentContent}</S.CommentText>
-                <S.CommentDate>{commentItem.commentCreatedAt}</S.CommentDate>
+                <S.CommentDate>{commentItem.commentUpdatedAt}</S.CommentDate>
                 {Number(commentItem.userId) === Number(decodedToken?.sub) && (
                   <S.OptionArea className="optionsIcon" onClick={() => toggleOptions(commentItem.commentId)}>
                     <img src={EllipsisIcon} alt="더보기" style={{ width: '20px', height: '20px' }} />
@@ -145,7 +158,7 @@ function Comments() {
                   </S.OptionArea>
                 )}
               </S.CommentProfileBox>
-              {editingComments[commentItem.commentId] && (
+              {Object.prototype.hasOwnProperty.call(editingComments, commentItem.commentId) && (
                 <>
                   <TextareaLabel
                     name="comment"
@@ -164,6 +177,7 @@ function Comments() {
                       throw new Error('Function not implemented.');
                     }}
                   />
+                  <div ref={errorMessagesRef} style={{ color: 'blue' }}></div>
                   <S.CommentOptionBtnContainer>
                     <S.CommentOptionBtn title="edit" onClick={() => handleEditSubmit(commentItem.commentId)}>
                       등록

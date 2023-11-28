@@ -33,7 +33,7 @@ function CommentForm() {
 
     // null 체크를 수행하고 안전하게 접근
     if (errorMessagesRef.current) {
-      errorMessagesRef.current.innerText = trimmedComment !== '' ? '' : '댓글을 작성해주세요.';
+      errorMessagesRef.current.innerText = trimmedComment !== '' ? '' : '댓글을 입력해주세요.';
     }
   };
 
@@ -42,7 +42,7 @@ function CommentForm() {
 
     // 텍스트 입력이 없을 경우 댓글 등록 불가
     if (comment.trim() === '') {
-      console.error('댓글을 작성해주세요.');
+      console.error('댓글을 입력해주세요.');
       return;
     }
 
@@ -99,7 +99,7 @@ function CommentForm() {
         isValid={isCommentValid}
         onBlur={onBlur}
       />
-      <div ref={errorMessagesRef} style={{ color: 'red' }}></div>
+      <div ref={errorMessagesRef} style={{ color: 'blue' }}></div>
       <div className="FormBlockSubmit">
         <S.CommentFormBtn
           value="등록"

@@ -55,8 +55,13 @@ export const likePost = async (postId: number, communityId: number) => {
 
 // 게시글 상세 코멘트
 export const getComments = async (postId: number, communityId: number): Promise<CommentList> => {
-  const response = await axiosImgInstance.get(`comment/poster/${postId}/community?communityId=${communityId}`);
-  return response.data.data;
+  try {
+    const response = await axiosImgInstance.get(`comment/poster/${postId}/community?communityId=${communityId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('댓글을 가져오는 중 오류 발생:', error);
+    return { commentList: [] };
+  }
 };
 
 export const postComment = async ({ postId, communityId, commentContent }: CommentData) => {

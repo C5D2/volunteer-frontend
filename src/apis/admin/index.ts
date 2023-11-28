@@ -10,9 +10,26 @@ export interface UserList {
   deleted: boolean;
 }
 
+// 전체 회원 목록 불러오기, 페이지네이션 적용은 추후 수정 예정
 export const getAllUser = async (): Promise<UserList[]> => {
-  const response = await axiosImgInstance.get(`admin/allUser`);
-  return response.data.data.userList;
+  let pageNo = 1;
+  let userList: any[] | PromiseLike<UserList[]> = [];
+  let lastPage = false;
+
+  do {
+    const response = await axiosImgInstance.get(`admin/allUser`, {
+      params: {
+        page: pageNo,
+      },
+    });
+
+    userList = userList.concat(response.data.data.userList);
+    lastPage = response.data.data.paginationDto.lastPage;
+
+    pageNo++;
+  } while (!lastPage);
+
+  return userList;
 };
 
 export const searchCommunity = async (type: string, keyword: string): Promise<any> => {
