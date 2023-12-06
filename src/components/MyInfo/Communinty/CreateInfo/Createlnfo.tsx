@@ -21,21 +21,44 @@ const Ul = styled.ul`
   border-radius: 16px;
 `;
 
+// const EditBtnWrap = styled.div`
+//   padding: 30px 0 30px 50px;
+//   box-sizing: border-box;
+// `;
+
+// const EditBtn = styled(Link)`
+//   background-color: #29715a;
+//   padding: 7px 20px;
+//   box-sizing: border-box;
+//   border-radius: 5px;
+//   color: #fff;
+//   flex-flow: wrap;
+//   font-size: 16px;
+// `;
+
 interface CreateInfoProps {
   userCreateCommunityData: Community[];
 }
 
+// type Data = {
+//   communityDetail: CommunityDetail;
+// };
+
+// type Props = {
+//   data: Data;
+// };
+
 const CreateInfo = ({ userCreateCommunityData }: CreateInfoProps) => {
   if (!userCreateCommunityData) {
     return (
-      <StArticle articleTitle='내가 생성한 커뮤니티 가기'>
+      <StArticle articleTitle="내가 생성한 커뮤니티 가기">
         <Ul>
-        <EmptyStateCard
-          src={CreateIcon}
-          alt="커뮤니티 아이콘"
-          pathName="/community/create"
-          text="커뮤니티를 생성하러 가기"
-        />
+          <EmptyStateCard
+            src={CreateIcon}
+            alt="커뮤니티 아이콘"
+            pathName="/community/create"
+            text="커뮤니티를 생성하러 가기"
+          />
         </Ul>
       </StArticle>
     );

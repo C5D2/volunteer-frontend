@@ -3,5 +3,8 @@
     "env": {
       "IGNORE_BUILD_ERRORS": "true"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

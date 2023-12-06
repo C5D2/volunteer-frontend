@@ -54,7 +54,12 @@ const AddInfoForm = ({ initialData }: AddInfoFormProps) => {
   const { validatePhoneNumber, phoneNumbereRef, handlePhoneNumberBlur } = useUesrInfoValidationByPhoneNumber();
   const { mutate } = useCreateUserAddInfo();
   const { handleUserPhone, duplicatePhone, isClicked, setIsClicked } = useCheckUserPhone();
-  const { isClicked:clicked, duplicateNickname, setIsClicked:setClicked,  handleUserNickname } = useCheckUserNickname();
+  const {
+    isClicked: clicked,
+    duplicateNickname,
+    setIsClicked: setClicked,
+    handleUserNickname,
+  } = useCheckUserNickname();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -99,11 +104,10 @@ const AddInfoForm = ({ initialData }: AddInfoFormProps) => {
     handleUserNickname(checkNicknameData);
   };
 
-
   const handleFocus = () => {
-    setIsClicked(false)
-    setClicked(false)
-  }
+    setIsClicked(false);
+    setClicked(false);
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <div>
@@ -123,8 +127,8 @@ const AddInfoForm = ({ initialData }: AddInfoFormProps) => {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleNicknameBlur}
-          validateText={clicked? duplicateNickname.message : validateNickname.message}
-          isValid={clicked? !duplicateNickname.status: validateNickname.status}
+          validateText={clicked ? duplicateNickname.message : validateNickname.message}
+          isValid={clicked ? !duplicateNickname.status : validateNickname.status}
         />
         <StButton type="button" buttonText="중복 확인" onClick={handleUserCheckNickname} />
       </div>
@@ -133,7 +137,7 @@ const AddInfoForm = ({ initialData }: AddInfoFormProps) => {
           labelText="핸드폰 번호"
           type="text"
           name="phoneNumber"
-          placeholder="핸드폰 번호를 입력해주세요."
+          placeholder="핸드폰 번호를 하이픈(-) 제외하고 입력해주세요."
           value={phoneNumber}
           ref={phoneNumbereRef}
           onChange={handleChange}

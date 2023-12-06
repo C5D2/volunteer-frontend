@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import * as S from './style'
+import * as S from './style';
 import { OAUTHBUTTON } from '@constants/login';
 import LoadingIndicator from '@components/ui/Loading';
 import LoginButton from '@components/Login/LoginButton';
-
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +25,5 @@ const LoginPage = () => {
     </S.LoginPageContainer>
   );
 };
-
 
 export default LoginPage;

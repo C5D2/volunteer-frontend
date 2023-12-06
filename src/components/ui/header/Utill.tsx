@@ -4,58 +4,63 @@ import { getCookie } from '@utils/cookies/cookies.ts';
 import { useEffect, useState } from 'react';
 import { logout } from '@apis/community/community.ts';
 import { useMutation } from 'react-query';
+import jwtDecode from 'jwt-decode';
 
 const Utill = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSocialLoggedIn, setIsSocialLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const mutation = useMutation(logout, {
     onSuccess: () => {
-      setIsLoggedIn(false);
+      setIsSocialLoggedIn(false); // 로그아웃 시 소셜 로그인 상태도 초기화
     },
   });
 
   useEffect(() => {
-    const token = getCookie('accessToken');
-    setIsLoggedIn(!!token);
+    const checkToken = async () => {
+      const token = await getCookie('accessToken');
+      if (token) {
+        setIsSocialLoggedIn(true);
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role && decodedToken.role === 'ROLE_ADMIN') {
+          setIsAdmin(true);
+        }
+      }
+    };
+    checkToken();
   }, []);
 
-  const handleLogin = async () => {
-    setIsLoggedIn(true);
-  };
-
-  console.log('isLoggedIn:', isLoggedIn);
-
   return (
-    <SignupBox>
-      {!isLoggedIn ? (
-        <>
-          <SignupBtn>
-            <Link to="/signup">회원가입</Link>
-          </SignupBtn>
-          <LoginBtn onClick={handleLogin}>
-            <Link to="/login">로그인</Link>
-          </LoginBtn>
-        </>
-      ) : (
-        <LogoutFlexBox>
-          <LogoutBtn
-            onClick={(event) => {
-              event.preventDefault();
-              mutation.mutate();
-            }}
-          >
-            로그아웃
-          </LogoutBtn>
+    <>
+      <SignupBox>
+        {/* {isAdmin && <Link to="/admin">관리자</Link>} */}
+        {!isSocialLoggedIn ? (
+          <>
+            <LoginBtn>
+              <Link to="/login">로그인</Link>
+            </LoginBtn>
+          </>
+        ) : (
+          <LogoutFlexBox>
+            <LogoutBtn
+              onClick={(event) => {
+                event.preventDefault();
+                mutation.mutate();
+              }}
+            >
+              로그아웃
+            </LogoutBtn>
 
-          <CommunityCrateBtn>
-            <Link to="community/create">커뮤니티 만들기</Link>
-          </CommunityCrateBtn>
-          <MypageBtn>
-            <Link to="my">마이페이지</Link>
-          </MypageBtn>
-        </LogoutFlexBox>
-      )}
-    </SignupBox>
+            <CommunityCrateBtn>
+              <Link to="community/create">커뮤니티 만들기</Link>
+            </CommunityCrateBtn>
+            <MypageBtn>
+              <Link to="my">마이페이지</Link>
+            </MypageBtn>
+          </LogoutFlexBox>
+        )}
+      </SignupBox>
+    </>
   );
 };
 
@@ -74,10 +79,7 @@ const SignupBox = styled.div`
     text-align: center;
   }
 `;
-const SignupBtn = styled.span`
-  background: #304647;
-  color: #fff;
-`;
+
 const LoginBtn = styled.span`
   background: #3aedf9;
   color: #fff;

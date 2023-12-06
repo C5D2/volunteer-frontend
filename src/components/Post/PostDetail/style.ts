@@ -5,7 +5,6 @@ export const BackLine = styled.div`
   padding: 10px;
   width: 100%;
   text-align: left;
-  background-color: #f3f3f3;
 `;
 
 export const PostDetailStyle = styled.div`
@@ -20,24 +19,23 @@ export const PostDetailStyle = styled.div`
 
 export const PostTitle = styled.div`
   width: 100%;
-  padding: 0px 0px 5px 0px;
-  font-size: 22px;
+  padding: 0px 0px 20px 0px;
+  font-size: 25px;
   font-weight: 600;
-  background-color: #f3f3f3;
+  border-bottom: 1px solid #d3d1d1;
 `;
 
 export const PostTime = styled.div`
   width: 100%;
-  padding: 0px 5px 0px 0px;
-  font-size: 10px;
+  padding: 0px 20px 0px 0px;
+  font-size: 15px;
   text-align: right;
-  background-color: #f3f3f3;
 `;
 
 export const PostContentBox = styled.div`
   width: 100%;
   padding: 10px 0px;
-  font-size: 17px;
+  font-size: 20px;
 `;
 
 export const PostAuthorInfo = styled.div`
@@ -47,7 +45,7 @@ export const PostAuthorInfo = styled.div`
 export const ProfileWrap = styled.div`
   display: flex;
   font-size: 14px;
-  background-color: #f3f3f3;
+  /* background-color: #f3f3f3; */
   gap: 10px;
   padding: 12px 0px 12px 12px;
 `;
@@ -62,8 +60,10 @@ export const Comments = styled.div`
   width: 100%;
   height: 100%;
   padding: 20px;
-  max-width: 840px;
+  max-width: 920px;
   // background-color: #fffdf7;
+  box-shadow: rgba(149, 157, 165, 0.2) 5px 15px 24px;
+  border-radius: 15px;
 `;
 
 export const CommentLabel = styled.label`
@@ -73,7 +73,7 @@ export const CommentLabel = styled.label`
 `;
 
 export const CommentsList = styled.div`
-  background-color: #f3f3f3;
+  background-color: #f7f7f8;
 `;
 
 export const CommentsForm = styled.form`

@@ -31,8 +31,7 @@ const IntroInforContent: React.FC<Props> = ({ DetailData }) => {
       <S.LocationIco>장소 {DetailData.data.communityDetail.communityLocation}</S.LocationIco>
       <S.Felxbox>
         <S.ParticipantIco>
-          참여자
-          <S.ParticipantText>{DetailData.data.communityDetail.communityMaxParticipant}명</S.ParticipantText>
+          모집인원 : <S.ParticipantText>{DetailData.data.communityDetail.communityMaxParticipant}명</S.ParticipantText>
         </S.ParticipantIco>
         <S.WritingTime>
           글 작성 시간

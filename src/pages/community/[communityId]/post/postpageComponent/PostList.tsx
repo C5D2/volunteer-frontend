@@ -10,6 +10,7 @@ interface Props {
   index: any;
   post: any;
   communityIdNumber: any;
+  isLoading: boolean;
 }
 
 interface DecodedToken {
@@ -17,7 +18,7 @@ interface DecodedToken {
   sub: string;
 }
 
-const PostList = ({ posterListData, communityIdNumber }: Props) => {
+const PostList = ({ posterListData, communityIdNumber, isLoading }: Props) => {
   const token: string | null = getCookie('accessToken');
   let loggedInUserId: string | null;
   let decodedToken: DecodedToken | null = null;
@@ -30,8 +31,12 @@ const PostList = ({ posterListData, communityIdNumber }: Props) => {
 
   console.log('communityIdNumber:', communityIdNumber);
 
+  if (isLoading) {
+    return <S.NoContent>Loading...</S.NoContent>;
+  }
+
   if (!posterListData || !posterListData.data || !posterListData.data.posterList) {
-    return <S.NoContent>컨텐츠가 없습니다.</S.NoContent>;
+    return <S.NoContent>게시글이 없습니다.</S.NoContent>;
   }
   const [showToggleBox, setShowToggleBox] = useState(false);
   const handleOptionBtnClick = () => {

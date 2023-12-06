@@ -3,10 +3,11 @@ import * as W from '@pages/community/stlyes/SubLayoutCommon.ts';
 import IntroUserContent from './communitypagecommponent/IntroUserContent';
 import IntroPostContent from './communitypagecommponent/IntroPostContent';
 import IntroInforContent from './communitypagecommponent/IntroInforContent';
-import { useQuery, useMutation } from 'react-query';
-import { getCommunityDetail, sendCommunityData } from '@apis/community/community.ts';
+import { useQuery } from 'react-query';
+import { getCommunityDetail } from '@apis/community/community.ts';
 import { CommunityDetail, CommunityImgPath, CommunityUserDetail } from '@interfaces/Community.ts';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getCookie } from '@utils/cookies/cookies.ts';
 
 type Data = {
   communityUserDetail: CommunityUserDetail;
@@ -30,11 +31,21 @@ const CommunityPage = () => {
     communityIdNumber ? getCommunityDetail(communityIdNumber) : Promise.resolve(null)
   );
 
-  const mutation = useMutation(sendCommunityData);
+  // const mutation = useMutation(sendCommunityData);
+  const navigate = useNavigate();
 
+  // 커뮤니티 참가하기 버튼 클릭시, 로그인 여부에 따라 다른 페이지로 이동 기능
   const handleJoinClick = () => {
-    if (communityIdNumber !== undefined) {
-      mutation.mutate(communityIdNumber);
+    const token = getCookie('accessToken');
+    const isAuthenticated = token && token !== '';
+
+    if (isAuthenticated) {
+      navigate(`/community/${communityId}/post`);
+    } else {
+      const confirmLogin = window.confirm('커뮤니티에 참가하시려면 로그인이 필요합니다. 로그인을 하시겠습니까?');
+      if (confirmLogin) {
+        navigate('/login');
+      }
     }
   };
 
@@ -58,14 +69,11 @@ const CommunityPage = () => {
           <IntroUserContent DetailData={DetailData} />
           <IntroPostContent DetailData={DetailData} />
           <IntroInforContent DetailData={DetailData} />
-          <S.CommunityEdit>
-            <Link to={`/community/${communityId}/edit`} state={{ data: DetailData.data }}>
-              커뮤니티 수정하기
-            </Link>
-          </S.CommunityEdit>
+
           <S.CommunityBtnWrap>
             <S.CommunityJoinButton onClick={handleJoinClick}>
-              <Link to={`/community/${communityId}/post`}>커뮤니티 참가하기</Link>
+              커뮤니티 참가하기
+              {/* <Link to={`/community/${communityId}/post`}>커뮤니티 참가하기</Link> */}
             </S.CommunityJoinButton>
           </S.CommunityBtnWrap>
         </S.CommunityIntroWrap>

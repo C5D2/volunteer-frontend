@@ -107,12 +107,20 @@ const CategoryList = () => {
                   </S.CategoryDataBox>
 
                   <S.CategoryJoinBox>
-                    {community.communityMaxParticipant === 10 ? (
+                    {community.communityMaxParticipant === community.communityParticipant ? (
                       <S.IsJoined>
-                        <S.IsJoinedText>참여완료</S.IsJoinedText>
+                        <S.IsJoinedText>모집마감</S.IsJoinedText>
                       </S.IsJoined>
-                    ) : null}
-                    <S.CommunityJoinCount>{community.communityMaxParticipant}</S.CommunityJoinCount>
+                    ) : (
+                      <S.IsJoined>
+                        <S.IsJoinedText>모집중</S.IsJoinedText>
+                      </S.IsJoined>
+                    )}
+                    <S.CommunityJoinCountBox>
+                      <S.CommunityJoinCount>
+                        {community.communityParticipant}/{community.communityMaxParticipant}
+                      </S.CommunityJoinCount>
+                    </S.CommunityJoinCountBox>
                     <S.HostName>{community.communityAuthor}</S.HostName>
                   </S.CategoryJoinBox>
                 </S.FlexBox>

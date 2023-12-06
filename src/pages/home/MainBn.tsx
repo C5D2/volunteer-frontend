@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-// import MainBN from '/src/assets/images/MainBN.png';
+import mapleTownVideo4 from '@assets/images/mapleTownVideo4.mp4';
 
 const MainBn = () => {
   return (
     <VideoBox>
       <MainBnBox autoPlay loop muted>
-        <source src="/src/assets/images/mapleTownVideo4.mp4" type="video/mp4" />
+        <source src={mapleTownVideo4} type="video/mp4" />
         {/* <Title>떡잎마을 형제들이 알고싶다.</Title>
       <TextContent>
         다같이 환경보호 커뮤니티를

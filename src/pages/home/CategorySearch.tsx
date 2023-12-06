@@ -51,7 +51,7 @@ const CategorySearch: React.FC<CategorySearchProps> = ({ onSearch, filteredData,
       <S.SearchBtn onClick={handleSearch}>검색</S.SearchBtn>
       {searched && ( // 검색 결과 메시지를 표시할 때에는 searched 상태를 확인
         <S.SearchTextResult>
-          카테고리 검색 결과 <S.DataLength>{filteredData.length}</S.DataLength>개가 검색되었습니다.
+          커뮤니티 검색 결과 <S.DataLength>{filteredData.length}</S.DataLength>개가 검색되었습니다.
         </S.SearchTextResult>
       )}
     </S.SearchBox>

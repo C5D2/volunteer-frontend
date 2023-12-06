@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PostListOptionBtn from '@assets/images/PostListOptionBtn.png';
 import HeartIco from '@assets/images/HeartIco.png';
 import CommentIco from '@assets/images/CommentIco.png';
@@ -277,6 +277,33 @@ const NoContent = styled.div`
   margin-top: 20px;
 `;
 
+const LodaingBox = styled.div`
+  margin-top: 100px;
+  padding: 40px 0;
+  box-sizing: border-box;
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const LoadingStyle = styled.div`
+  margin: 0 auto;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: ${spin} 2s linear infinite;
+`;
+
+const LodaingText = styled.div`
+  font-size: 30px;
+  color: #333;
+  text-align: center;
+  padding: 20px 0 0 0;
+`;
 export {
   PostListWrap,
   PostListCenterWrap,
@@ -314,4 +341,8 @@ export {
   LikeCount,
   CommentCount,
   NoContent,
+  LodaingBox,
+  LoadingStyle,
+  LodaingText,
+  spin,
 };

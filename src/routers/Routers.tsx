@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import PageOutlet from '@components/PageOutlet/PageOutlet';
 import MainPage from '@pages/home/MainPage';
 import LoginPage from '@pages/login/LoginPage';
-import { AddUserInfoPage, SignUpPage } from '@pages/signup';
+import { AddUserInfoPage } from '@pages/signup';
 import { MyPage, MyInfoEditPage } from '@pages/my';
 import { CommunityPage, CommunityCreatePage, CommunityEditPage } from '@pages/community';
 import { PostPage, PostCreatePage, PostDetailPage, PostEditPage } from '@pages/community/[communityId]/post';
@@ -25,10 +25,6 @@ const Routers = createBrowserRouter([
       {
         path: 'login/loading',
         element: <LoadingPage />,
-      },
-      {
-        path: 'signup',
-        element: <SignUpPage />,
       },
       {
         path: 'signup/add',

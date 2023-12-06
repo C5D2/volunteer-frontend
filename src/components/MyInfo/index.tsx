@@ -20,20 +20,20 @@ const MyInfoWrap = styled.div`
 const MyInfo = () => {
   const { data: activeData } = useGetMyActive();
   const { data: createInfo } = useGetMyMakeCommunites();
-  const { data: joinInfo} = useGetMyJoinCommunites()
+  const { data: joinInfo } = useGetMyJoinCommunites();
   const { picture, nickname, email, communityUserCount, countOfPosterLike, countOfLikedPoster, commentCount } =
     activeData?.data.data ?? [];
   const { communityList } = createInfo?.data.data ?? [];
-  const { communityList: communtyJoinList} = joinInfo?.data.data ?? []
+  const { communityList: communtyJoinList } = joinInfo?.data.data ?? [];
   const userActiveData = activeData
     ? [
         { icon: HeartIcon, name: '좋아요 한 게시글', value: countOfPosterLike },
-        { icon: GetHeart, name: '좋아요 받은 게시글', value: countOfLikedPoster },
+        { icon: GetHeart, name: '받은 좋아요 총 개수', value: countOfLikedPoster },
         { icon: CommunityIcon, name: '내가 활동한 커뮤니티', value: communityUserCount },
         { icon: CommentIcon, name: '내가 작성한 댓글', value: commentCount },
       ]
     : [];
-  
+
   return (
     <MyInfoWrap>
       <ProfileInfo nickname={nickname} email={email} picture={picture} />

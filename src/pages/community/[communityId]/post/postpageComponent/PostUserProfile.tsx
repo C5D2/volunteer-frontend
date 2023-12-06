@@ -1,16 +1,12 @@
 import * as S from '@pages/community/stlyes/PostStyle.ts';
 
-// interface Props {
-//   posterListData: { data: { posterList: PosterList[] } } | undefined;
-// }
-
 interface Props {
   posterListData: any;
 }
 
 const PostUserProfile: React.FC<Props> = ({ posterListData }) => {
   if (!posterListData || !posterListData.data || !posterListData.data.posterList) {
-    return <S.NoContent>유저정보가 없습니다.</S.NoContent>;
+    return;
   }
 
   console.log('posterListData:', posterListData.data.posterList[0].posterAuthor);

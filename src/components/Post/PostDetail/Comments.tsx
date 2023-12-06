@@ -7,6 +7,7 @@ import { getComments, CommentList, putComment, deleteComment } from '@apis/post/
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import jwtDecode from 'jwt-decode';
 import { getCookie } from '@utils/cookies/cookies';
+import Modal from '@components/ui/Modal';
 
 interface DecodedToken {
   userId: string;
@@ -19,6 +20,8 @@ function Comments() {
   const { communityId, postId } = useParams();
   const [editingComments, setEditingComments] = useState<Record<string, string>>({});
   const errorMessagesRef = useRef<HTMLDivElement | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [commentToDelete, setCommentToDelete] = useState<number | null>(null);
 
   // 토큰
   const token: string | null = getCookie('accessToken');
@@ -68,11 +71,24 @@ function Comments() {
     },
   });
 
-  const handleDeleteComment = (commentId: number, communityId: number) => {
-    try {
-      deleteCommentMutation.mutateAsync({ commentId, communityId });
-    } catch (error) {
-      console.error(error);
+  const handleOpenModal = (event: React.MouseEvent, commentId: number) => {
+    event.stopPropagation();
+    setCommentToDelete(commentId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteComment = async () => {
+    if (commentToDelete) {
+      try {
+        await deleteCommentMutation.mutateAsync({ commentId: commentToDelete, communityId: Number(communityId) });
+        setIsModalOpen(false);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -149,10 +165,17 @@ function Comments() {
                         </S.CommentOptionBtn>
                         <S.CommentOptionBtn
                           className="commentDelete"
-                          onClick={() => handleDeleteComment(commentItem.commentId, Number(communityId))}
+                          onClick={(event) => handleOpenModal(event, commentItem.commentId)}
                         >
                           삭제
                         </S.CommentOptionBtn>
+                        {isModalOpen && (
+                          <Modal
+                            modalText="이 댓글을 삭제하시겠습니까?"
+                            handleConfirmClick={handleDeleteComment}
+                            handleCloseClick={handleCloseModal}
+                          />
+                        )}
                       </div>
                     )}
                   </S.OptionArea>

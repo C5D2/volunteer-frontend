@@ -1,9 +1,12 @@
 import Image from '../Image';
 import styled from 'styled-components';
 import { Community } from '@interfaces/Community';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
 import { deleteCommunity } from '@apis/community/post';
+import { getCommunityDetail } from '@apis/community/community.ts';
+import { useQuery } from 'react-query';
+import { CommunityDetail } from '@interfaces/Community.ts';
 
 const Li = styled.li`
   width: 100%;
@@ -42,6 +45,15 @@ const TextInfo = styled.div`
   justify-content: space-evenly;
   flex-direction: column;
 `;
+
+const MyCommunityEdit = styled.span`
+  background-color: #29715a;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #fff;
+`;
+
 const CategoryChip = styled.div`
   padding: 5px 4px;
   width: 146px;
@@ -82,6 +94,30 @@ const StButton = styled(Button)`
   color: #fff;
   padding: 10px;
 `;
+
+const EditBtnWrap = styled.div`
+  padding: 30px 0 30px 50px;
+  box-sizing: border-box;
+`;
+
+const EditBtn = styled(Link)`
+  background-color: #29715a;
+  padding: 7px 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: #fff;
+  flex-flow: wrap;
+  font-size: 16px;
+`;
+
+type Data = {
+  communityDetail: CommunityDetail;
+};
+
+type Props = {
+  data: Data;
+};
+
 interface CardProps {
   communityItemData: Community;
   isCreate?: string;
@@ -102,9 +138,31 @@ const Card = ({ communityItemData, isCreate }: CardProps) => {
     communityMainImgPath,
   } = communityItemData;
   const isParticipate = communityStatus === '모집 중';
+
+  const communityIdNumber = communityId ? parseInt(communityId, 10) : undefined;
+  console.log('communityIdNumber:', communityIdNumber);
+
+  const {
+    data: DetailData,
+    isLoading,
+    isError,
+  } = useQuery<Props | null, Error>(['communityDetail', communityIdNumber], () =>
+    communityIdNumber ? getCommunityDetail(communityIdNumber) : Promise.resolve(null)
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !DetailData) {
+    return <div>Error occurred</div>;
+  }
+
+  console.log('DetailData:', DetailData);
+
   return (
     <Li>
-      <StCard to={`/community/${communityId}`}>
+      <StCard to={`/community/${communityId}/post`}>
         <>
           <CommunityInfo>
             <ImgWrap>
@@ -119,17 +177,25 @@ const Card = ({ communityItemData, isCreate }: CardProps) => {
 
           <Info>
             <div>
-              <Image src={''} alt={''} />
+              {/* <Image /> */}
               <span>{isParticipate ? `${communityParticipant} / ${communityMaxParticipant}` : communityStatus}</span>
             </div>
             <div>
-              <Image src={''} alt={''} />
+              {/* <Image /> */}
               <span>{communityLocation}</span>
             </div>
           </Info>
         </>
       </StCard>
       {isCreate && <StButton buttonText="삭제하기" onClick={() => handleDelete(String(communityId))} />}
+
+      {isCreate && (
+        <EditBtnWrap>
+          <EditBtn to={`/community/${communityId}/edit`} state={{ data: DetailData.data }}>
+            커뮤니티 수정하기
+          </EditBtn>
+        </EditBtnWrap>
+      )}
     </Li>
   );
 };

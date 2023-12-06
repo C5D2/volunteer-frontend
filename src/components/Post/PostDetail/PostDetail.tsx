@@ -1,8 +1,9 @@
 import back from '@assets/images/back.svg';
 import * as S from './style';
+import FullHeart from '@assets/images/full_heart.svg';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useState } from 'react';
-import LikeButton from './Like';
+import LikeButton, { AnimatedHeart, PostContainer } from './Like';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPostDetail, likePost, PosterDetail } from '@apis/post/detail';
 import { manageStatus } from '@hooks/queries/error';
@@ -12,6 +13,7 @@ function PostDetail() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { communityId, postId } = useParams();
+  const [showHeart, setShowHeart] = useState(false);
 
   //게시글 상세 정보를 불러오는 쿼리
   const { isLoading, isError, error, data } = useQuery<PosterDetail, Error>('detail', async () => {
@@ -36,6 +38,9 @@ function PostDetail() {
 
   const handleLikeButtonClick = async () => {
     toggleLike(); // 좋아요 상태 토글
+    setLiked(true);
+    setShowHeart(true); // 하트 애니메이션 시작
+    setTimeout(() => setShowHeart(false), 1500); // 1.5초 후 하트 애니메이션 종료
     await likePostMutation.mutate(); // 좋아요 수 변경 API 호출
   };
 
@@ -52,6 +57,9 @@ function PostDetail() {
 
   return (
     <>
+      <PostContainer>
+        <AnimatedHeart show={showHeart} src={FullHeart} />
+      </PostContainer>
       <S.BackLine>
         <img
           src={back}

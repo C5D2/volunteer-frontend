@@ -1,5 +1,5 @@
 import { Column } from 'react-table';
-import UserImage from './UserImage';
+import Images from './Images';
 
 export const memberColumns: readonly Column<object>[] = [
   {
@@ -14,7 +14,13 @@ export const memberColumns: readonly Column<object>[] = [
     Header: '프로필사진',
     accessor: 'profileImg',
     Cell: ({ value }: { value: string }) => (
-      <UserImage imageUrl={value} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
+      <Images
+        imageUrl={value}
+        style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+        onLoad={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      />
     ),
   },
   {

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import EngagementIco from '@assets/images/EngagementIco.png';
 
 const CategoryListWrap = styled.div`
   width: 1500px;
@@ -111,6 +112,11 @@ const IsJoinedText = styled.i`
   width: 100px;
 `;
 
+const CommunityJoinCountBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const CommunityJoinCount = styled.span`
   display: block;
   font-family: 'NotoSans-Regular';
@@ -118,7 +124,18 @@ const CommunityJoinCount = styled.span`
   font-weight: 400;
   color: #afafaf;
   text-align: right;
-  padding: 25px 5px 0 0px;
+  padding: 25px 5px 0 20px;
+  position: relative;
+  &::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: url(${EngagementIco}) no-repeat;
+    background-size: 15px;
+    position: absolute;
+    top: 28px;
+    left: 0;
+  }
 `;
 const HostName = styled.span`
   display: block;
@@ -171,6 +188,7 @@ export {
   CategoryJoinBox,
   IsJoined,
   IsJoinedText,
+  CommunityJoinCountBox,
   CommunityJoinCount,
   HostName,
   MoreBtnWrap,
