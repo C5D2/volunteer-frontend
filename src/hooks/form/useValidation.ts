@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 type ChangeEventType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 type RefType = { [key: string]: ChangeEventType };
 
 const useValidation = () => {
   const inputRefs = useRef<RefType>({});
+  const [isOverLength, setIsOverLength] = useState(false);
 
   const [validateMessage, setValidateMessage] = useState({
     communityTitle: '',
@@ -31,28 +32,36 @@ const useValidation = () => {
     }
   };
 
-  const validationMessage = (type: string, isError: boolean, errorMessage: string = '') => {
-    setValidateMessage({ ...validateMessage, [type]: errorMessage });
-    setValidateStatus({ ...validateStatus, [type]: !isError });
-  };
+  const validationMessage = useCallback((type: string, isError: boolean, errorMessage: string = '') => {
+    setValidateMessage((prevMessage) => ({ ...prevMessage, [type]: errorMessage }));
+    setValidateStatus((prevStatus) => ({ ...prevStatus, [type]: !isError }));
+  }, []);
 
-  const validateTitle = () => {
+  const validateTitle = useCallback(() => {
     const titleInput = inputRefs.current['communityTitle'];
-    const titleRefValue = titleInput.value;
-    const isEmptyTitle = titleRefValue.trim() === '';
-    const isOverLength = titleRefValue.length > 50;
+    if (titleInput) {
+      const titleRefValue = titleInput.value;
+      const isEmptyTitle = titleRefValue.trim() === '';
+      const isOverLength = titleRefValue.length > 50;
 
-    if (isEmptyTitle) {
-      validationMessage('communityTitle', isEmptyTitle, '커뮤니티 이름을 입력해주세요.');
-      titleInput.style.border = '2px solid #fb304b';
-    } else if (isOverLength) {
-      validationMessage('communityTitle', isOverLength, '커뮤니티 이름이 50자를 초과하였습니다.');
-      titleInput.style.border = '2px solid #fb304b';
-    } else {
-      validationMessage('communityTitle', false);
-      titleInput.style.border = '';
+      if (isEmptyTitle) {
+        validationMessage('communityTitle', isEmptyTitle, '커뮤니티 이름을 입력해주세요.');
+        titleInput.style.border = '2px solid #fb304b';
+      } else if (isOverLength) {
+        validationMessage('communityTitle', isOverLength, '커뮤니티 이름이 50자를 초과하였습니다.');
+        titleInput.style.border = '2px solid #fb304b';
+      } else {
+        validationMessage('communityTitle', false);
+        titleInput.style.border = '';
+      }
+
+      setIsOverLength(isOverLength);
     }
-  };
+  }, [validationMessage]);
+
+  useEffect(() => {
+    validateTitle();
+  }, [validateTitle]);
 
   const validateContent = () => {
     const contentTextarea = inputRefs.current['communityContent'];
@@ -131,6 +140,7 @@ const useValidation = () => {
     validateMessage,
     validateFile,
     validateTitle,
+    isOverLength,
     communityFormRef,
     validateContent,
     validateLocation,

@@ -37,6 +37,7 @@ const CommunityForm = ({ initialData, initialImageURLs, onSave, onUpadate }: Com
   const {
     validateStatus,
     validateMessage,
+    isOverLength,
     validateFile,
     validateTitle,
     communityFormRef,
@@ -48,7 +49,8 @@ const CommunityForm = ({ initialData, initialImageURLs, onSave, onUpadate }: Com
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (isEmptyFormData) return alert('모든 값은 입력이 필수 입니다.');
+    if (isEmptyFormData) return alert('모든 값은 입력이 필수입니다.');
+    if (isOverLength) return alert('커뮤니티 제목은 50자를 초과할 수 없습니다.');
     if (!isEmptyFormData) setIsShown(true);
   };
 
