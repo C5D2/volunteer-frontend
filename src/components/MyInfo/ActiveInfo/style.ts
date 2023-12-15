@@ -33,6 +33,7 @@ export const HostGradeButton = styled.button<ButtonProps>`
   height: 45px;
   border-radius: 30px;
   color: ${({ eligible }) => (eligible ? 'white' : '#D3D1D1')};
+  cursor: ${({ eligible }) => (eligible ? 'pointer' : 'default')};
   a {
     font-weight: 600;
   }
