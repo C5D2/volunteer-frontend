@@ -3,10 +3,10 @@ import * as W from '@pages/community/stlyes/SubLayoutCommon.ts';
 import IntroUserContent from './communitypagecommponent/IntroUserContent';
 import IntroPostContent from './communitypagecommponent/IntroPostContent';
 import IntroInforContent from './communitypagecommponent/IntroInforContent';
-import { useQuery } from 'react-query';
-import { getCommunityDetail } from '@apis/community/community.ts';
+import { useMutation, useQuery } from 'react-query';
+import { getCommunityDetail, sendCommunityData } from '@apis/community/community.ts';
 import { CommunityDetail, CommunityImgPath, CommunityUserDetail } from '@interfaces/Community.ts';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getCookie } from '@utils/cookies/cookies.ts';
 
 type Data = {
@@ -31,7 +31,7 @@ const CommunityPage = () => {
     communityIdNumber ? getCommunityDetail(communityIdNumber) : Promise.resolve(null)
   );
 
-  // const mutation = useMutation(sendCommunityData);
+  const mutation = useMutation(sendCommunityData);
   const navigate = useNavigate();
 
   // 커뮤니티 참가하기 버튼 클릭시, 로그인 여부에 따라 다른 페이지로 이동 기능
@@ -46,6 +46,10 @@ const CommunityPage = () => {
       if (confirmLogin) {
         navigate('/login');
       }
+    }
+
+    if (communityIdNumber !== undefined) {
+      mutation.mutate(communityIdNumber);
     }
   };
 

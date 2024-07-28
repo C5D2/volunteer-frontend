@@ -58,7 +58,6 @@ const PostForm = ({ initialData, initialImageURLs, onSave, onEdit }: PostFormPro
       formData.append('data', blob);
       if (postId) {
         await onEdit?.({ postData: formData, communityId: communityId, postId: postId });
-        // 수정 완료 후, 게시물 리스트로 리다이렉트
         navigate(`/community/${communityId}/post/`);
       } else {
         await onSave?.({ postData: formData, communityId: communityId });
@@ -77,6 +76,7 @@ const PostForm = ({ initialData, initialImageURLs, onSave, onEdit }: PostFormPro
     setImageURLs([]);
     setIsShown(false);
   };
+
   return (
     <>
       {isShown && (

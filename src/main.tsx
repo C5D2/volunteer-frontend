@@ -13,6 +13,25 @@ AOS.init();
 
 const queryClient = new QueryClient();
 
+// const onError = (error: any) => {
+//   console.error(error);
+// };
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       retry: 1,
+//       retryDelay: 0,
+//       onError,
+//     },
+//     mutations: {
+//       retry: 1,
+//       retryDelay: 0,
+//       onError,
+//       staleTime: 1 * 40 * 1000,
+//     },
+//   },
+// });
+
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const clientId: string = import.meta.env.REACT_APP_CLIENT_ID!;

@@ -1,6 +1,6 @@
 import { MemberList } from './MemberList';
 import { ListWrap } from '../community/CommunitySearchPage';
-import AdminSidebar from '@components/adminLayout/AdminSidebar';
+import AdminSidebar from '@components/Admin/adminLayout/AdminSidebar';
 
 const MemberListPage = () => {
   return (

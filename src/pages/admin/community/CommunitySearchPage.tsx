@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CommunityList } from './CommunityList';
-import AdminSidebar from '@components/adminLayout/AdminSidebar';
+import AdminSidebar from '@components/Admin/adminLayout/AdminSidebar';
 
 const CommunitySearchPage = () => {
   return (

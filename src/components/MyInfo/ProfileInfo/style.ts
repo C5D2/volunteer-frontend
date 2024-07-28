@@ -62,6 +62,7 @@ export const ButtonWrap = styled.div`
   align-items: center;
   gap: 10px;
 `;
+
 export const UnsubscribingButton = styled(Button)`
   color: #ccc;
   &:hover {

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const Aticle = styled(Article)`
   width: 100%;
 `;
+interface ButtonProps {
+  eligible: boolean;
+}
 
 export const ActiveBox = styled.ul`
   display: flex;
@@ -22,15 +25,21 @@ export const HostGradeUpRequirement = styled.p`
   color: #a1a1a1;
 `;
 
-export const HostGradeButton = styled.button`
+export const HostGradeButton = styled.button<ButtonProps>`
   float: right;
-  background-color: transparent;
-  border: 2px solid #d9d9d9;
+  background-color: ${({ eligible }) => (eligible ? '#57C8B5' : 'transparent')};
+  border: 2px solid ${({ eligible }) => (eligible ? 'transparent' : '#D9D9D9')};
   width: 150px;
   height: 45px;
   border-radius: 30px;
-  color: #d3d1d1;
+  color: ${({ eligible }) => (eligible ? 'white' : '#D3D1D1')};
+  cursor: ${({ eligible }) => (eligible ? 'pointer' : 'default')};
   a {
     font-weight: 600;
+  }
+
+  &:hover {
+    ${({ eligible }) =>
+      eligible ? 'box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;' : ''}
   }
 `;

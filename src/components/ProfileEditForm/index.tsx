@@ -3,7 +3,7 @@ import * as S from './style';
 import { useFormState } from '@hooks/form';
 interface ProfileProps {
   initialData: {
-    nickName: string;
+    nickname: string;
     phoneNum: string;
   };
 }
@@ -19,8 +19,8 @@ const ProfileEditForm = ({ initialData }: ProfileProps) => {
           labelText="닉네임"
           type="text"
           placeholder="닉네임을 입력해주세요"
-          name="nickName"
-          value={postFormData.nickName}
+          name="nickname"
+          value={postFormData.nickname}
           onChange={handleChange}
           // ref={(ref) => profileFormRef('nickName', ref)}
           // isValid={validateStatus.nickName}

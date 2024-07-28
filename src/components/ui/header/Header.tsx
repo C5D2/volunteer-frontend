@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from '../globalStyle/GlobalStyle';
-import mainLogo from '/src/assets/images/Logo.png';
+import mainLogo from '@assets/images/Logo.png';
 import Nav from './Nav';
 import Utill from './Utill';
 import ScrollToTop from '@hooks/location/scrolltop';
@@ -40,6 +40,7 @@ const HeaderWrap = styled.div`
   height: 100%;
   margin: 0 auto;
   display: flex;
+  position: relative;
 `;
 
 const Logo = styled.h1`

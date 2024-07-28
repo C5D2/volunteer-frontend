@@ -122,7 +122,7 @@ const PostList = ({ posterListData, communityIdNumber, isLoading }: Props) => {
             <S.CommentBox>
               <S.Comment>
                 Comment
-                <S.CommentCount>11</S.CommentCount>
+                <S.CommentCount>{post.commentCount}</S.CommentCount>
               </S.Comment>
             </S.CommentBox>
           </S.PostLikeCommentBox>
