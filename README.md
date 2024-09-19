@@ -1,6 +1,6 @@
 
 <h1 align="center">🍃 ECOF 🍃</h1>
-</br>
+<br>
 <div  align="center">
   <img width="100%" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/cba6ffd0-4fba-4dea-ab38-16c709e55f88">
 </div>
@@ -9,7 +9,7 @@
 
 <div align="center">
   환경을 생각하는 우리 조금 더 친숙하게 환경에 접근할 수 없을까?
-  </br>
+  <br>
   온라인과 오프라인 커뮤니티를 통해</br>
   혼자서가 아닌 많은 사람들과 함께 환경보호를 즐기고 싶다면!</br>
 
@@ -17,18 +17,18 @@
  로 오세요!
 </div>
 
-</br>
+<br>
 <img width="100%" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/9a86e2cf-15fc-4116-882f-9d1f89008fed">
 
-</br>
+<br>
 
-</br>
+<br>
 
 ## 🚩 프로젝트 개요
 * **프로젝트 명** : <img width="50" src="https://github.com/volunteer-community/volunteer-backend/assets/107487996/1b7b21f4-94f8-4b6a-ad3e-8f8ee0ac752b">
 * **진행 기간** : 23.10.16 ~ 23.11.10
 
-</br>
+<br>
 
 ## 👨‍👩‍👧‍👦 팀원 소개
 | 김나라 | 김선미 | 김현묵 |
@@ -45,7 +45,7 @@
 | [@dhdhk](https://github.com/dhdhk) | [@younssue](https://github.com/younssue) | [@Llimy1](https://github.com/Llimy1) | [@bbororo](https://github.com/bbororo) | [@wnsdyd1012](https://github.com/wnsdyd1012) |
 | **BE** | **BE** (팀장) | **BE** | **BE** | **BE** | **BE** |
 
-</br>
+<br>
 
 ## ⚙️기술 스택
 ### Tools
@@ -306,6 +306,63 @@
 
 <br>
 
+## 🖥️주요 기능 화면
+
+### 1. 메인 화면
+|메인화면|
+|---|
+|<img src="https://github.com/user-attachments/assets/4414eaa4-b300-4e7c-8d01-f2494fae6878" width="100%" />| 
+
+### 2. 회원가입 및 로그인 화면
+|네이버 로그인|
+|---|
+| <img src="https://github.com/user-attachments/assets/f06de645-9713-4766-bac7-9aa2bedd78f5" width="100%" /> |
+
+### 3. 커뮤니티 상세 화면
+|커뮤니티 상세 설명|
+|---|
+| <img src="https://github.com/user-attachments/assets/b25f0b4d-d90a-4326-b1bc-5acdec2987c6" width="100%" /> |
+
+### 4. 커뮤니티 게시글 화면
+|커뮤니티 게시글 목록|
+|---|
+<img src="https://github.com/user-attachments/assets/2a63545b-5d5b-4911-8145-f330a03a6f78" width="100%" /> |
+
+|커뮤니티 게시글 상세|
+|---|
+<img src="https://github.com/user-attachments/assets/6b733b19-16d6-46bc-81d2-aea5f6dca872" width="100%" /> |
+
+|커뮤니티 게시글 수정|
+|---|
+| <img src="https://github.com/user-attachments/assets/f49116b3-a3eb-468c-869a-41e3a760d1ed" width="100%" /> |
+
+### 5. 커뮤니티 게시글 댓글 화면
+|댓글 작성|
+|---|
+| <img src="https://github.com/user-attachments/assets/f7709467-bd3d-46cb-96f3-a73ee76e1a52" width="100%" /> | 
+
+|댓글 수정|
+|---|
+<img src="https://github.com/user-attachments/assets/708a169d-8fc9-423d-9d4b-05b5b42bf219" width="100%" /> |
+
+|댓글 삭제|
+|---|
+<img src="https://github.com/user-attachments/assets/67575faa-2345-4816-8e33-bc497a42488b" width="100%" /> |
+
+### 6. 마이페이지 화면
+|마이페이지|
+|---|
+| <img src="https://github.com/user-attachments/assets/32200daa-b708-419b-a7a3-9fbe7f6ca12b" width="100%" /> |
+
+### 7. 관리자 화면
+|회원 목록|
+|---|
+| <img src="https://github.com/user-attachments/assets/97db09e8-211c-430a-959e-b4ef0e6cadde" width="100%" /> |
+
+|커뮤니티 목록|
+|---|
+| <img src="https://github.com/user-attachments/assets/9ffc69f8-9323-4b53-916b-4c546692f897" width="100%" /> |
+
 ## 📑 관련 문서
 
 ### [📌 화면 정의서](https://www.figma.com/file/DPcoJ3Er0Rmgu84f8cwml8/Untitled?type=design&node-id=0-1&mode=design&t=kzOPVcjWnrAJbJ8G-0)
@@ -319,7 +376,7 @@
 
 
 
-</br>
+<br>
 
 ## 🌲 Git
 ### Branch
